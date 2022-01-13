@@ -1,5 +1,7 @@
 # Symfony + Tailwind CSS Example
 
+The goal of this repository is to make itself obsolete. As long as there is no framework guide for Symfony in the Tailwind CSS docs yet (see [PR #1131](https://github.com/tailwindlabs/tailwindcss.com/pull/1131)), this repository bridges the gap between the Symfony framework and Tailwind CSS.
+
 ## Install Tailwind CSS with Symfony
 
 ### Create your project
