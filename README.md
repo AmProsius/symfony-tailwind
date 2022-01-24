@@ -7,15 +7,13 @@
 Start by creating a new Symfony project if you don't have one set up already. The most common approach is to use [the Symfony installer](https://symfony.com/download).
 
 ```sh
-symfony new symfony-tailwind --full
-cd symfony-tailwind
-composer require symfony/webpack-encore-bundle
-yarn install
+symfony new --webapp my-project
+cd my-project
 ```
 
 ### Install Tailwind CSS
 
-Install `tailwindcss` and its peer dependencies via yarn and create your `tailwind.config.js` file.
+Install `tailwindcss` and its peer dependencies via yarn, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
 
 ```sh
 yarn add tailwindcss postcss postcss-loader autoprefixer --dev
@@ -30,8 +28,8 @@ In your `webpack.config.js` file, enable the PostCSS loader.
 // webpack.config.js
 
 Encore
-    // ...
-    .enablePostCssLoader()
+  // ...
+  .enablePostCssLoader()
 ;
 ```
 
@@ -44,8 +42,7 @@ Add the paths to all of your template files in your `tailwind.config.js` file.
 
 module.exports = {
   content: [
-    "./assets/**/*.js",
-    "./assets/**/*.vue",
+    "./assets/**/*.{js,vue}",
     "./templates/**/*.html.twig",
   ],
   theme: {
@@ -79,13 +76,27 @@ yarn watch
 
 Make sure your compiled CSS is included in the `<head>` then start using Tailwind's utility classes to style your content.
 
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{{ encore_entry_link_tags('app') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  {% block body %}{% endblock %}
+</body>
+</html>
+```
+
 ## Use this repository
 
 Clone this repository, then run:
 
 ```sh
 composer install
-yarn install
+yarn
 ```
 
 Start development:
